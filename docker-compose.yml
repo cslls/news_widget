@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  app:
+    build: app/
+    container_name: app-news
+    volumes:
+      - ./app/:/app/
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+
+  web:
+    image: node:alpine
+    container_name: web-news #entrypoint: /bin/sh
+    ports:
+      - 5000:5000
+    working_dir: /srv/app
+    volumes:
+      - type: bind
+        source: ./web/
+        target: /srv/app #tty: true
+    command: npm run dev
+
+  db:
+    image: postgres:alpine
+    container_name: db-news
+    volumes:
+      - data-news:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+
+volumes:
+  data-news:
+
+networks:
+  network-news:
+    driver: bridge
