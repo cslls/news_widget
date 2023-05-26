@@ -8,20 +8,26 @@
   </div>
 </template>
 
-<script>
-import { ref, computed } from "vue";
-import axios from "axios";
+<script lang="ts">
+import axios, { AxiosResponse } from "axios";
+
+interface News {
+  id: number;
+  name: string;
+}
 
 export default {
   data() {
     return {
-      items: [],
+      items: [] as News[],
     };
   },
   mounted() {
-    axios.get("http://localhost:8000/api/news").then((response) => {
-      this.items = response.data;
-    });
+    axios
+      .get<News[]>("http://localhost:8000/api/news")
+      .then((response: AxiosResponse<News[]>) => {
+        this.items = response.data;
+      });
   },
 };
 </script>
