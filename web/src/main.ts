@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import CKEditor from "@ckeditor/ckeditor5-vue";
+import "boxicons";
 import App from "./App.vue";
 import "./assets/css/style.css";
 

@@ -2,10 +2,10 @@
 
 #app {
   padding: 20px;
-  background-color: lightskyblue;
+  background-color: rgb(240, 242, 245);
   font-family: "PT Sans", sans-serif;
   border-style: solid;
   /* border-color: lightgrey;*/
-  border-width: 2px;
+  border-width: 1px;
   border-radius: 0.5em;
 }

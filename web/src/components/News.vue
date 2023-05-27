@@ -1,15 +1,20 @@
 <template>
-  <!-- Контейнер карточен -->
+  <!-- Контейнер карточек -->
   <div class="card__container">
     <!-- Карточки -->
     <div v-for="n in 10" class="card">
-      <img
-        class="thumbnail"
-        src="https://images.unsplash.com/photo-1684654488308-2229de99e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-      />
+      <div class="thumbnail__container">
+        <img
+          class="thumbnail"
+          src="https://images.unsplash.com/photo-1684654488308-2229de99e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+        />
+      </div>
       <div class="title-description__container">
+        <p сlass="date">17 марта</p>
         <a class="title" href="#">Куда поехать на море в 2023 году недорого</a>
         <p class="description">{{ desc }}</p>
+        <p class="tags">#тест, #тест2, #тест3</p>
+        <p class="keywords">#тест, #тест2, #тест3</p>
       </div>
     </div>
   </div>
@@ -46,28 +51,45 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card__container {
   display: flex;
   flex-direction: column;
 }
 .card {
   display: flex;
+  flex-direction: row;
   background-color: #fff;
   overflow: hidden;
   margin: 1em;
   border-radius: 1em;
   /* overflow-wrap: break-word; */
 }
+.thumbnail__container {
+  width: 50%;
+}
 .thumbnail {
-  width: 40%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .title-description__container {
   margin: 1em;
+}
+.date {
+  color: rgb(240, 242, 245);
 }
 .title {
   font-weight: bold;
 }
 .description {
+}
+@media only screen and (max-width: 720px) {
+  .card {
+    flex-direction: column !important;
+  }
+  .thumbnail__container {
+    width: 100%;
+  }
 }
 </style>
