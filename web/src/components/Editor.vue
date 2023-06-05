@@ -1,4 +1,5 @@
 <template>
+  <!-- <input placeholder="Название статьи" /> -->
   <div id="editor">
     <ckeditor
       :editor="editor"
@@ -6,6 +7,7 @@
       :config="editorConfig"
     ></ckeditor>
   </div>
+  <!-- <button>Отправить</button> -->
 </template>
 
 <script>

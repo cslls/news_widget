@@ -11,7 +11,7 @@ const tabs = [
   { name: "AddNews", label: "Добавить новость" },
 ];
 
-const selectedTab = ref("Vue");
+const selectedTab = ref("News");
 const changeTab = (tabName) => {
   selectedTab.value = tabName;
 };
@@ -23,7 +23,7 @@ const changeTab = (tabName) => {
       <News />
     </div>
     <div v-if="selectedTab === 'AddNews'">
-      <Editor />
+      <AddNews />
     </div>
   </Tabs>
 </template>

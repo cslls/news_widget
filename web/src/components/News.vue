@@ -2,51 +2,70 @@
   <!-- Контейнер карточек -->
   <div class="card__container">
     <!-- Карточки -->
-    <div v-for="n in 10" class="card">
+    <div
+      v-for="item in items"
+      :key="item.id"
+      @click="showArticle(item)"
+      class="card"
+    >
       <div class="thumbnail__container">
-        <img
-          class="thumbnail"
-          src="https://images.unsplash.com/photo-1684654488308-2229de99e7a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-        />
+        <img class="thumbnail" src="../assets/images/1.jpg" />
       </div>
       <div class="title-description__container">
-        <p сlass="date">17 марта</p>
-        <a class="title" href="#">Куда поехать на море в 2023 году недорого</a>
-        <p class="description">{{ desc }}</p>
-        <p class="tags">#тест, #тест2, #тест3</p>
-        <p class="keywords">#тест, #тест2, #тест3</p>
+        <p сlass="date">{{ item.date }}</p>
+        <a class="title">{{ item.name }}</a>
+        <p class="description">
+          {{ item.description.substring(0, 200).trim() + "..." }}
+        </p>
+        <p class="tags">
+          <span v-for="tag in item.tags"> #{{ tag }} </span>
+        </p>
+        <p class="keywords">
+          <span v-for="keyword in item.keywords"> #{{ keyword }} </span>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import axios, { AxiosResponse } from "axios";
+import NewsDetails from "NewsDetails";
+
+interface Tag {
+  name: string;
+}
+
+interface Keywords {
+  name: string;
+}
 
 interface News {
   id: number;
+  date: string;
   name: string;
   description: string;
+  tags: Tag[];
+  keywords: Keywords[];
 }
 
 export default {
   data() {
-    let desc: string = `Отдых за границей у моря не всегда означает большие траты, а иногда
-          понежиться две недели на пляже и увидеть интересные
-          достопримечательности в другой стране дешевле, чем провести то же
-          время на русском юге.`;
-    desc = desc.substring(0, 200).trim() + "...";
     return {
-      desc,
       items: [] as News[],
     };
   },
+  methods: {
+    async fetchArticles() {
+      const response = await fetch("http://localhost:8000/api/news");
+      this.items = await response.json();
+    },
+    showArticle(item) {
+      //this.$emit("show-article", item.description);
+      console.log(item);
+    },
+  },
   mounted() {
-    axios
-      .get<News[]>("http://localhost:8000/api/news")
-      .then((response: AxiosResponse<News[]>) => {
-        this.items = response.data;
-      });
+    this.fetchArticles();
   },
 };
 </script>
