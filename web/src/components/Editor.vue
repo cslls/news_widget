@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       editor: ClassicEditor,
-      editorData: "<p>Rich-text editor content.</p>",
+      editorData: "<p>Текст Вашей новости.</p>",
       editorConfig: {
         // The configuration of the rich-text editor.
       },

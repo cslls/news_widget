@@ -3,15 +3,20 @@ from rest_framework import serializers
 from api.models import News, Tag, Keywords
 
 class TagSerializer(serializers.ModelSerializer):
+    created_at = serializers.DateTimeField(format='%d.%m.%y %H:%M', read_only = True)
+    updated_at = serializers.DateTimeField(format='%d.%m.%y %H:%M', read_only = True)
+
     class Meta:
         model = Tag
-        fields = [ 'id', 'name' ]
-        read_only_fields = ['id', 'name']
+        fields = [ 'id', 'name', 'created_at', 'updated_at' ]
 
 class KeywordsSerializer(serializers.ModelSerializer):
+    created_at = serializers.DateTimeField(format='%d.%m.%y %H:%M', read_only = True)
+    updated_at = serializers.DateTimeField(format='%d.%m.%y %H:%M', read_only = True)
+
     class Meta:
         model = Keywords
-        fields = [ 'id', 'name' ]
+        fields = [ 'id', 'name', 'created_at', 'updated_at' ]
 
 class NewsSerializer(serializers.ModelSerializer):
     date = serializers.DateTimeField(format='%d.%m.%y %H:%M')
@@ -27,7 +32,6 @@ class NewsSerializer(serializers.ModelSerializer):
      )
     created_at = serializers.DateTimeField(format='%d.%m.%y %H:%M', read_only = True)
     updated_at = serializers.DateTimeField(format='%d.%m.%y %H:%M', read_only = True)
-
 
     class Meta:
         model = News
