@@ -2,21 +2,30 @@
   <!-- Контейнер карточек -->
   <div class="card__container">
     <!-- Карточки -->
+    <div v-if="selectedNews">
+      <button v-on:click="backToList">Назад</button>
+      <div>
+        <h1>{{ selectedNews.name }}</h1>
+        <div v-html="selectedNews.description"></div>
+      </div>
+    </div>
     <div
+      v-else
       v-for="item in items"
       :key="item.id"
-      @click="showArticle(item)"
+      @click="showNews(item)"
       class="card"
     >
       <div class="thumbnail__container">
-        <img class="thumbnail" src="../assets/images/1.jpg" />
+        <img class="thumbnail" :src="item.image" />
       </div>
       <div class="title-description__container">
         <p сlass="date">{{ item.date }}</p>
         <a class="title">{{ item.name }}</a>
-        <p class="description">
-          {{ item.description.substring(0, 200).trim() + "..." }}
-        </p>
+        <div v-html="item.description" class="description"></div>
+        <!-- <div class="description"> -->
+        <!--     {{ item.description }}   -->
+        <!-- </div> -->
         <p class="tags">
           <span v-for="tag in item.tags"> #{{ tag }} </span>
         </p>
@@ -46,12 +55,14 @@ interface News {
   description: string;
   tags: Tag[];
   keywords: Keywords[];
+  image: string;
 }
 
 export default {
   data() {
     return {
       items: [] as News[],
+      selectedNews: null,
     };
   },
   methods: {
@@ -59,9 +70,13 @@ export default {
       const response = await fetch("http://localhost:8000/api/news");
       this.items = await response.json();
     },
-    showArticle(item) {
+    showNews(item) {
       //this.$emit("show-article", item.description);
+      this.selectedNews = item;
       console.log(item);
+    },
+    backToList() {
+      this.selectedNews = null;
     },
   },
   mounted() {

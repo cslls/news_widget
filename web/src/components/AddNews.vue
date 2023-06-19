@@ -13,13 +13,21 @@
         placeholder="Заголовок"
         v-model="formData.name"
       />
+      <div id="editor">
+        <ckeditor
+          :editor="editor"
+          v-model="formData.description"
+          :config="editorConfig"
+        ></ckeditor>
+      </div>
+      <label for="thumbnail">Обложка новости</label>
       <input
-        type="text"
-        name="description"
-        id="description"
-        v-model="formData.description"
+        type="file"
+        name="thumbnail"
+        id="thumbnail"
+        @change="uploadImage"
+        accept="image/*"
       />
-      <!-- <component :is="editor" v-model="formData.description"></component> -->
       <button class="publish">Опубликовать</button>
     </form>
   </div>
@@ -27,20 +35,58 @@
 
 <script>
 import axios from "axios";
-import Editor from "./Editor.vue";
+import { ClassicEditor } from "@ckeditor/ckeditor5-editor-classic";
+import { ImageUpload } from "@ckeditor/ckeditor5-image";
+import { SimpleUploadAdapter } from "@ckeditor/ckeditor5-upload";
+import { Essentials } from "@ckeditor/ckeditor5-essentials";
+import { Bold, Italic } from "@ckeditor/ckeditor5-basic-styles";
+import { Link } from "@ckeditor/ckeditor5-link";
+import { Paragraph } from "@ckeditor/ckeditor5-paragraph";
 
-const headers = { "Content-Type": "application/json; charset=UTF-8" };
+const options = {
+  headers: { "Content-Type": "multipart/form-data; charset=UTF-8" },
+};
 
 export default {
-  components: {
-    Editor,
-  },
+  name: "editor",
   data() {
     return {
-      editor: "Editor",
+      editor: ClassicEditor,
+      //editorData: "<p>Content of the editor.</p>",
+      editorConfig: {
+        placeholder: "Текст Вашей новости.",
+        plugins: [
+          ImageUpload,
+          SimpleUploadAdapter,
+          Essentials,
+          Bold,
+          Italic,
+          Link,
+          Paragraph,
+        ],
+
+        toolbar: {
+          items: [
+            "bold",
+            "italic",
+            // "imageUpload",
+            "link",
+            "undo",
+            "redo",
+          ],
+        },
+
+        imageUpload: {
+          isEnabled: true,
+        },
+
+        simpleUpload: {
+          uploadUrl: "http://localhost:8000/upload/images",
+        },
+      },
       formData: {
         date: "",
-        // tags: ["Тест", "Мода"],
+        //tags: ["Тест", "Мода"],
         // keywords: [],
         name: "",
         description: "",
@@ -51,9 +97,7 @@ export default {
   methods: {
     createPost() {
       axios
-        .post("http://localhost:8000/api/news/", this.formData, {
-          headers: headers,
-        })
+        .post("http://localhost:8000/api/news/", this.formData, options)
         .then((response) => {
           console.log(response);
         })

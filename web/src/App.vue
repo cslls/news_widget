@@ -18,14 +18,16 @@ const changeTab = (tabName) => {
 </script>
 
 <template>
-  <Tabs :names="tabs" :selectedTab="selectedTab" @changeTab="changeTab">
-    <div v-if="selectedTab === 'News'">
-      <News />
-    </div>
-    <div v-if="selectedTab === 'AddNews'">
-      <AddNews />
-    </div>
-  </Tabs>
+  <!-- <Tabs :names="tabs" :selectedTab="selectedTab" @changeTab="changeTab"> -->
+  <!--   <div v-if="selectedTab === 'News'"> -->
+  <!--     <News /> -->
+  <!--   </div> -->
+  <!--   <div v-if="selectedTab === 'AddNews'"> -->
+  <!--     <AddNews /> -->
+  <!--   </div> -->
+  <!-- </Tabs> -->
+  <!-- <AddNews /> -->
+  <News />
 </template>
 
 <style></style>

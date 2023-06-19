@@ -15,7 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path, include
+from django.conf import settings  
+from django.conf.urls.static import static
 from api.views import KeywordsList, NewsList, NewsDetail, TagsList
 
 urlpatterns = [
@@ -24,4 +26,8 @@ urlpatterns = [
     path('api/keywords/', KeywordsList.as_view(), name='keywords-list'),
     path('api/news/', NewsList.as_view(), name='news-list'),
     path('api/news/<int:pk>', NewsDetail.as_view(), name='news-detail'),
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
+
+if settings.DEBUG:  
+        urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
