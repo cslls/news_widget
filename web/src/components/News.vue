@@ -3,89 +3,133 @@
   <div class="card__container">
     <!-- Карточки -->
     <div v-if="selectedNews">
-      <button v-on:click="backToList">Назад</button>
-      <div>
+      <button class="back-button" v-on:click="backToList">Назад</button>
+      <div class="selected-news">
         <h1>{{ selectedNews.name }}</h1>
         <div v-html="selectedNews.description"></div>
       </div>
     </div>
-    <div
-      v-else
-      v-for="item in items"
-      :key="item.id"
-      @click="showNews(item)"
-      class="card"
-    >
-      <div class="thumbnail__container">
-        <img class="thumbnail" :src="item.image" />
-      </div>
-      <div class="title-description__container">
-        <p сlass="date">{{ item.date }}</p>
-        <a class="title">{{ item.name }}</a>
-        <div v-html="item.description" class="description"></div>
-        <!-- <div class="description"> -->
-        <!--     {{ item.description }}   -->
-        <!-- </div> -->
-        <p class="tags">
-          <span v-for="tag in item.tags"> #{{ tag }} </span>
-        </p>
-        <p class="keywords">
-          <span v-for="keyword in item.keywords"> #{{ keyword }} </span>
-        </p>
+    <div v-else>
+      <input
+        class="search"
+        type="text"
+        v-model="searchQuery"
+        placeholder="Введите запрос"
+      />
+      <div
+        v-for="item in searchedItems"
+        :key="item.id"
+        @click="showNews(item)"
+        class="card"
+      >
+        <div class="thumbnail__container">
+          <img class="thumbnail" :src="item.image" />
+        </div>
+        <div class="title-description__container">
+          <p сlass="date">{{ item.date }}</p>
+          <a class="title">{{ item.name }}</a>
+          <div class="description">
+            {{
+              item.description
+                ? item.description.slice(0, 200).replace(/(<([^>]+)>)/gi, "")
+                : ""
+            }}
+          </div>
+          <p class="tags">
+            <span v-for="tag in item.tags"> #{{ tag }} </span>
+          </p>
+          <p class="keywords">
+            <span v-for="keyword in item.keywords"> #{{ keyword }} </span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import NewsDetails from "NewsDetails";
-
-interface Tag {
-  name: string;
-}
-
-interface Keywords {
-  name: string;
-}
-
-interface News {
-  id: number;
-  date: string;
-  name: string;
-  description: string;
-  tags: Tag[];
-  keywords: Keywords[];
-  image: string;
-}
+import { computed, onMounted, reactive, ref } from "vue";
 
 export default {
-  data() {
-    return {
-      items: [] as News[],
-      selectedNews: null,
+  setup() {
+    const items = reactive([]);
+    const searchQuery = ref("");
+    const selectedNews = ref(null);
+    const showNews = (item) => {
+      selectedNews.value = item;
     };
-  },
-  methods: {
-    async fetchArticles() {
-      const response = await fetch("http://localhost:8000/api/news");
-      this.items = await response.json();
-    },
-    showNews(item) {
-      //this.$emit("show-article", item.description);
-      this.selectedNews = item;
-      console.log(item);
-    },
-    backToList() {
-      this.selectedNews = null;
-    },
-  },
-  mounted() {
-    this.fetchArticles();
+    const backToList = () => {
+      selectedNews.value = null;
+    };
+    const searchedItems = computed(() => {
+      return items.filter((item) => {
+        return (
+          item.name.toLowerCase().indexOf(searchQuery.value.toLowerCase()) != -1
+        );
+      });
+    });
+    onMounted(async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/news/");
+        const data = await response.json();
+        data.forEach((item) => {
+          items.push(item);
+        });
+      } catch (e) {
+        console.log("Ошибка загрузки новостей");
+      }
+    });
+    return { searchedItems, searchQuery, selectedNews, showNews, backToList };
   },
 };
 </script>
 
 <style scoped>
+.back-button {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  border: 1px solid #000;
+  background: #fff;
+  padding: 0 20px;
+  font-size: 15px;
+}
+.back-button:hover {
+  background: grey;
+  color: #fff;
+  transition: 0.2s;
+}
+.back-button.selected {
+  background: #000;
+  color: #fff;
+}
+.selected-news {
+  background-color: #fff;
+  overflow: hidden;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+}
+.search {
+  padding: 1em;
+  border-width: 1px;
+  border-radius: 1em;
+  border-style: solid;
+  border-color: #ccced1;
+}
+.search:focus {
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  outline-width: thin;
+  outline-style: solid;
+  outline-color: #6cb5f9;
+  outline-offset: -1px;
+}
+
 .card__container {
   display: flex;
   flex-direction: column;
@@ -97,7 +141,6 @@ export default {
   overflow: hidden;
   margin: 1em;
   border-radius: 1em;
-  /* overflow-wrap: break-word; */
 }
 .thumbnail__container {
   width: 50%;

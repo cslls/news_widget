@@ -1,5 +1,5 @@
 from api import serializers
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from api.models import Keywords, News, Tag 
@@ -8,6 +8,9 @@ from api.serializers import NewsSerializer, TagSerializer, KeywordsSerializer
 class NewsList(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['name', 'tags__name', 'keywords__name']
+    ordering_fields = [ 'name', 'date' ]
 
 class NewsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = News.objects.all()
