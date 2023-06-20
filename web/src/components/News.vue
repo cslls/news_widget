@@ -48,21 +48,46 @@
 </template>
 
 <script lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, Ref, ref } from "vue";
+
+interface Tag {
+  name: string;
+}
+
+interface Keywords {
+  name: string;
+}
+
+interface News {
+  id: number;
+  date: string;
+  name: string;
+  description: string;
+  tags: Tag[];
+  keywords: Keywords[];
+  image: string;
+}
 
 export default {
-  setup() {
-    const items = reactive([]);
+  setup(): {
+    searchedItems: any;
+    searchQuery: { value: string };
+    selectedNews: any;
+    showNews: (item: News) => void;
+    backToList: () => void;
+  } {
+    const items = reactive<News[]>([]);
     const searchQuery = ref("");
-    const selectedNews = ref(null);
-    const showNews = (item) => {
+    const selectedNews: Ref<any> =
+      ref(null);
+    const showNews = (item: News): void => {
       selectedNews.value = item;
     };
-    const backToList = () => {
+    const backToList = (): void => {
       selectedNews.value = null;
     };
     const searchedItems = computed(() => {
-      return items.filter((item) => {
+      return items.filter((item: News) => {
         return (
           item.name.toLowerCase().indexOf(searchQuery.value.toLowerCase()) != -1
         );
@@ -72,7 +97,7 @@ export default {
       try {
         const response = await fetch("http://localhost:8000/api/news/");
         const data = await response.json();
-        data.forEach((item) => {
+        data.forEach((item: News) => {
           items.push(item);
         });
       } catch (e) {
