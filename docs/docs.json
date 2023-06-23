@@ -166,7 +166,8 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin"
+				"url": "http://16.16.82.26/admin",
+				"description": "Главная страница административной панели."
 			},
 			"response": []
 		},
@@ -179,7 +180,8 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin/api/keywords"
+				"url": "http://16.16.82.26/admin/api/keywords",
+				"description": "Страница просмотра и редактирования доступных ключевых слов."
 			},
 			"response": []
 		},
@@ -192,7 +194,8 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin/api/news"
+				"url": "http://16.16.82.26/admin/api/news",
+				"description": "Страница просмотра и редактирования доступных новостей."
 			},
 			"response": []
 		},
@@ -230,7 +233,8 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "http://16.16.82.26/admin/auth/user/"
 			},
 			"response": []
 		}
