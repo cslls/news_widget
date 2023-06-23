@@ -217,7 +217,8 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "http://16.16.82.26/admin/auth/group/"
 			},
 			"response": []
 		}
