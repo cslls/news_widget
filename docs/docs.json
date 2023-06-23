@@ -158,14 +158,28 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Admin Panel",
 			"id": "3453983b-3d4c-46f6-8a93-a299b77f609f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": "http://16.16.82.26/admin"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Keywords",
+			"id": "2ff63c1e-5f0b-4e2c-8b11-1b41f6af5922",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/api/keywords"
 			},
 			"response": []
 		}
