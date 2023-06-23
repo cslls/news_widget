@@ -180,8 +180,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin/api/keywords",
-				"description": "Страница просмотра и редактирования доступных ключевых слов."
+				"url": "http://16.16.82.26/admin/api/keywords"
 			},
 			"response": []
 		},
@@ -194,8 +193,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin/api/news",
-				"description": "Страница просмотра и редактирования доступных новостей."
+				"url": "http://16.16.82.26/admin/api/news"
 			},
 			"response": []
 		},
@@ -208,8 +206,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin/api/tags",
-				"description": "Страница просмотра и редактирования доступных тегов."
+				"url": "http://16.16.82.26/admin/api/tags"
 			},
 			"response": []
 		},
@@ -222,8 +219,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://16.16.82.26/admin/auth/group/",
-				"description": "Страница просмотра и редактирования доступных групп пользователей."
+				"url": "http://16.16.82.26/admin/auth/group/"
 			},
 			"response": []
 		},
