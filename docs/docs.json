@@ -195,6 +195,18 @@
 				"url": "http://16.16.82.26/admin/api/news"
 			},
 			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "e45f3f07-92de-448f-aeae-fbbaf340cddd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
