@@ -197,8 +197,34 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Admin Tags",
 			"id": "e45f3f07-92de-448f-aeae-fbbaf340cddd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/api/tags"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Auth Group",
+			"id": "7a2a8794-cf7a-4dee-af8e-d00a318af352",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/auth/group/"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Auth Users",
+			"id": "eedbf0b3-b8e7-415b-8198-d7b7a07dc2f0",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
