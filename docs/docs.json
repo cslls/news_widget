@@ -204,6 +204,19 @@
 			},
 			"request": {
 				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/api/tags"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "7a2a8794-cf7a-4dee-af8e-d00a318af352",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
 				"header": []
 			},
 			"response": []
