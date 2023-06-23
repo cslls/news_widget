@@ -171,7 +171,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Admin Keywords",
 			"id": "2ff63c1e-5f0b-4e2c-8b11-1b41f6af5922",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
