@@ -8,7 +8,7 @@
 	"item": [
 		{
 			"name": "List News",
-			"_postman_id": "4f0865ad-c148-4c3c-89e3-be105e447737",
+			"id": "4f0865ad-c148-4c3c-89e3-be105e447737",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -22,7 +22,7 @@
 		},
 		{
 			"name": "Search News",
-			"_postman_id": "59766be5-ea37-41c1-9349-d31a371595c9",
+			"id": "59766be5-ea37-41c1-9349-d31a371595c9",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -56,7 +56,7 @@
 		},
 		{
 			"name": "Add News",
-			"_postman_id": "0d51dc2f-a4c3-4ccf-9886-db2a3e967ddc",
+			"id": "0d51dc2f-a4c3-4ccf-9886-db2a3e967ddc",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -96,10 +96,7 @@
 							"type": "file",
 							"src": "/home/uwu/e45ea8ec3eb3a0c4afc64c347f051bac.jpg"
 						}
-					],
-					"options": {
-						"formdata": {}
-					}
+					]
 				},
 				"url": "http://16.16.82.26/api/news/",
 				"description": "Добавление новостей через Api."
@@ -108,7 +105,7 @@
 		},
 		{
 			"name": "Edit News",
-			"_postman_id": "c82ff40d-2011-40cf-b882-8d0461dbaf53",
+			"id": "c82ff40d-2011-40cf-b882-8d0461dbaf53",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -153,13 +150,22 @@
 							"type": "file",
 							"src": "/home/uwu/5d0d30c7618c24ad974a81b91831dee1.jpg"
 						}
-					],
-					"options": {
-						"formdata": {}
-					}
+					]
 				},
 				"url": "http://16.16.82.26/api/news/3",
 				"description": "Редактирование новостей через Api."
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Panel",
+			"id": "3453983b-3d4c-46f6-8a93-a299b77f609f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
