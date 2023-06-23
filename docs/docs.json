@@ -204,8 +204,7 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": "http://16.16.82.26/admin/api/tags"
+				"header": []
 			},
 			"response": []
 		}
