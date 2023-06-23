@@ -210,7 +210,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Admin Auth Group",
 			"id": "7a2a8794-cf7a-4dee-af8e-d00a318af352",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
