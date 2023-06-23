@@ -169,6 +169,45 @@
 				"url": "http://16.16.82.26/admin"
 			},
 			"response": []
+		},
+		{
+			"name": "Admin Keywords",
+			"id": "2ff63c1e-5f0b-4e2c-8b11-1b41f6af5922",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/api/keywords"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin News",
+			"id": "e91be8bf-c54d-4c0c-8ff2-700360a4c6a0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/api/news"
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Tags",
+			"id": "e45f3f07-92de-448f-aeae-fbbaf340cddd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://16.16.82.26/admin/api/tags"
+			},
+			"response": []
 		}
 	]
 }
